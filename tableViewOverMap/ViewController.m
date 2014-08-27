@@ -7,21 +7,40 @@
 //
 
 #import "ViewController.h"
+#import "MyTableView.h"
 
-@interface ViewController ()
+@interface ViewController () <UITableViewDataSource>
+
+@property (strong, nonatomic) IBOutlet MyTableView *tableView;
 
 @end
 
 @implementation ViewController
-            
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    self.tableView.rowHeight = 44;
+    self.tableView.contentInset = (UIEdgeInsets){ .top = self.view.bounds.size.height - self.tableView.rowHeight };
+    self.tableView.contentOffset = CGPointMake(0, -self.tableView.contentInset.top);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+
+    cell.textLabel.text = [NSString stringWithFormat:@"List item %d", indexPath.row];
+
+    return cell;
 }
 
 @end

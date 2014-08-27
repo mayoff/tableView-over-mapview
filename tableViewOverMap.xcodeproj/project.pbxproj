@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31484A9719AE231D00D4FDF4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31484A9619AE231D00D4FDF4 /* MapKit.framework */; };
 		31B0BA7B19AE20F4001437EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B0BA7A19AE20F4001437EC /* main.m */; };
 		31B0BA7E19AE20F4001437EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B0BA7D19AE20F4001437EC /* AppDelegate.m */; };
 		31B0BA8119AE20F4001437EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B0BA8019AE20F4001437EC /* ViewController.m */; };
 		31B0BA8419AE20F4001437EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31B0BA8219AE20F4001437EC /* Main.storyboard */; };
 		31B0BA8619AE20F4001437EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B0BA8519AE20F4001437EC /* Images.xcassets */; };
 		31B0BA9219AE20F4001437EC /* tableViewOverMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B0BA9119AE20F4001437EC /* tableViewOverMapTests.m */; };
+		31E89C1C19AE23F4000A19A1 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E89C1B19AE23F4000A19A1 /* MyTableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31484A9619AE231D00D4FDF4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		31B0BA7519AE20F4001437EC /* tableViewOverMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tableViewOverMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B0BA7919AE20F4001437EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31B0BA7A19AE20F4001437EC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -38,6 +41,8 @@
 		31B0BA8B19AE20F4001437EC /* tableViewOverMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tableViewOverMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B0BA9019AE20F4001437EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31B0BA9119AE20F4001437EC /* tableViewOverMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tableViewOverMapTests.m; sourceTree = "<group>"; };
+		31E89C1A19AE23F4000A19A1 /* MyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
+		31E89C1B19AE23F4000A19A1 /* MyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31484A9719AE231D00D4FDF4 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +67,7 @@
 		31B0BA6C19AE20F4001437EC = {
 			isa = PBXGroup;
 			children = (
+				31484A9619AE231D00D4FDF4 /* MapKit.framework */,
 				31B0BA7719AE20F4001437EC /* tableViewOverMap */,
 				31B0BA8E19AE20F4001437EC /* tableViewOverMapTests */,
 				31B0BA7619AE20F4001437EC /* Products */,
@@ -86,6 +93,8 @@
 				31B0BA8219AE20F4001437EC /* Main.storyboard */,
 				31B0BA8519AE20F4001437EC /* Images.xcassets */,
 				31B0BA7819AE20F4001437EC /* Supporting Files */,
+				31E89C1A19AE23F4000A19A1 /* MyTableView.h */,
+				31E89C1B19AE23F4000A19A1 /* MyTableView.m */,
 			);
 			path = tableViewOverMap;
 			sourceTree = "<group>";
@@ -216,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31B0BA8119AE20F4001437EC /* ViewController.m in Sources */,
+				31E89C1C19AE23F4000A19A1 /* MyTableView.m in Sources */,
 				31B0BA7E19AE20F4001437EC /* AppDelegate.m in Sources */,
 				31B0BA7B19AE20F4001437EC /* main.m in Sources */,
 			);
@@ -402,6 +412,7 @@
 				31B0BA9719AE20F4001437EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		31B0BA9819AE20F4001437EC /* Build configuration list for PBXNativeTarget "tableViewOverMapTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +421,7 @@
 				31B0BA9A19AE20F4001437EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
