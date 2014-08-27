@@ -28,6 +28,7 @@
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="vXZ-lx-hvc" id="OeK-dF-zI7"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Kp9-m7-sP0"/>
                                 </connections>
                             </tableView>
                         </subviews>

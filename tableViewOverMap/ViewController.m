@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "MyTableView.h"
 
-@interface ViewController () <UITableViewDataSource>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MyTableView *tableView;
 
@@ -24,7 +24,7 @@
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.tableView.contentInset = (UIEdgeInsets){ .top = self.view.bounds.size.height - self.tableView.rowHeight };
+    self.tableView.contentInset = (UIEdgeInsets){ .top = self.tableView.bounds.size.height - self.tableView.rowHeight };
     self.tableView.contentOffset = CGPointMake(0, -self.tableView.contentInset.top);
 }
 
@@ -33,7 +33,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 40;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -45,6 +45,18 @@
     cell.textLabel.text = [NSString stringWithFormat:@"List item %d", indexPath.row];
 
     return cell;
+}
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    CGFloat yMin = -self.tableView.contentInset.top;
+    CGFloat yMax = MIN(0, self.tableView.contentSize.height - self.tableView.bounds.size.height);
+    if (targetContentOffset->y < yMax) {
+        if (velocity.y < 0) {
+            targetContentOffset->y = yMin;
+        } else {
+            targetContentOffset->y = yMax;
+        }
+    }
 }
 
 @end
