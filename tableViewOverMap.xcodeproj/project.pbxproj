@@ -15,6 +15,7 @@
 		31B0BA8619AE20F4001437EC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31B0BA8519AE20F4001437EC /* Images.xcassets */; };
 		31B0BA9219AE20F4001437EC /* tableViewOverMapTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31B0BA9119AE20F4001437EC /* tableViewOverMapTests.m */; };
 		31E89C1C19AE23F4000A19A1 /* MyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E89C1B19AE23F4000A19A1 /* MyTableView.m */; };
+		31F00EEB19AE29E400EE582A /* README in Sources */ = {isa = PBXBuildFile; fileRef = 31F00EEA19AE29E400EE582A /* README */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		31B0BA9119AE20F4001437EC /* tableViewOverMapTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = tableViewOverMapTests.m; sourceTree = "<group>"; };
 		31E89C1A19AE23F4000A19A1 /* MyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableView.h; sourceTree = "<group>"; };
 		31E89C1B19AE23F4000A19A1 /* MyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableView.m; sourceTree = "<group>"; };
+		31F00EEA19AE29E400EE582A /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 		31B0BA6C19AE20F4001437EC = {
 			isa = PBXGroup;
 			children = (
+				31F00EEA19AE29E400EE582A /* README */,
 				31484A9619AE231D00D4FDF4 /* MapKit.framework */,
 				31B0BA7719AE20F4001437EC /* tableViewOverMap */,
 				31B0BA8E19AE20F4001437EC /* tableViewOverMapTests */,
@@ -226,6 +229,7 @@
 			files = (
 				31B0BA8119AE20F4001437EC /* ViewController.m in Sources */,
 				31E89C1C19AE23F4000A19A1 /* MyTableView.m in Sources */,
+				31F00EEB19AE29E400EE582A /* README in Sources */,
 				31B0BA7E19AE20F4001437EC /* AppDelegate.m in Sources */,
 				31B0BA7B19AE20F4001437EC /* main.m in Sources */,
 			);
