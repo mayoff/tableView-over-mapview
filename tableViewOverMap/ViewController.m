@@ -17,9 +17,13 @@
 
 @implementation ViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView.rowHeight = 44;
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
-    self.tableView.rowHeight = 44;
     self.tableView.contentInset = (UIEdgeInsets){ .top = self.view.bounds.size.height - self.tableView.rowHeight };
     self.tableView.contentOffset = CGPointMake(0, -self.tableView.contentInset.top);
 }
