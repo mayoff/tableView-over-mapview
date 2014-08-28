@@ -6,57 +6,83 @@
 //  Copyright (c) 2014 Rob Mayoff. All rights reserved.
 //
 
+#import <MapKit/MapKit.h>
 #import "ViewController.h"
 #import "MyTableView.h"
+#import "ScrollContentView.h"
+#import "MyScrollView.h"
+#import "DataSource.h"
+#import <tgmath.h>
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
-
-@property (strong, nonatomic) IBOutlet MyTableView *tableView;
+@interface ViewController () <UIScrollViewDelegate>
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    NSMutableArray *dataSources; // need to keep strong references to these because table views don't
+    ScrollContentView *contentView;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.rowHeight = 44;
+    dataSources = [NSMutableArray array];
+    [self initMapView];
+    [self initScrollView];
 }
 
-- (void)viewDidLayoutSubviews {
-    [super viewDidLayoutSubviews];
-    self.tableView.contentInset = (UIEdgeInsets){ .top = self.tableView.bounds.size.height - self.tableView.rowHeight };
-    self.tableView.contentOffset = CGPointMake(0, -self.tableView.contentInset.top);
+- (void)initMapView {
+    MKMapView *mapView = [[MKMapView alloc] initWithFrame:self.view.bounds];
+    mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:mapView];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (void)initScrollView {
+    MyScrollView *scrollView = [[MyScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.showsVerticalScrollIndicator = NO;
+    scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
+    scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:scrollView];
+
+    contentView = [[ScrollContentView alloc] init];
+    [scrollView addSubview:contentView];
+    scrollView.delegate = self;
+
+    [contentView addSubview:[self newTableViewWithPrefix:@"First List" numberOfRows:4]];
+    [contentView addSubview:[self newTableViewWithPrefix:@"Second List" numberOfRows:20]];
+    [contentView addSubview:[self newTableViewWithPrefix:@"Third List" numberOfRows:10]];
+    [contentView addSubview:[self newTableViewWithPrefix:@"Fourth List" numberOfRows:15]];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 40;
-}
+- (MyTableView *)newTableViewWithPrefix:(NSString *)prefix numberOfRows:(NSInteger)numberOfRows {
+    DataSource *dataSource = [[DataSource alloc] init];
+    dataSource.prefix = prefix;
+    dataSource.numberOfRows = numberOfRows;
+    [dataSources addObject:dataSource];
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-    }
-
-    cell.textLabel.text = [NSString stringWithFormat:@"List item %d", indexPath.row];
-
-    return cell;
+    MyTableView *tableView = [[MyTableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+    tableView.backgroundColor = [UIColor clearColor];
+    tableView.dataSource = dataSource;
+    tableView.delegate = dataSource;
+    tableView.showsHorizontalScrollIndicator = NO;
+    tableView.showsVerticalScrollIndicator = NO;
+    tableView.decelerationRate = UIScrollViewDecelerationRateFast;
+    tableView.rowHeight = 44;
+    return tableView;
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    CGFloat yMin = -self.tableView.contentInset.top;
-    CGFloat yMax = MIN(0, self.tableView.contentSize.height - self.tableView.bounds.size.height);
-    if (targetContentOffset->y < yMax) {
-        if (velocity.y < 0) {
-            targetContentOffset->y = yMin;
-        } else {
-            targetContentOffset->y = yMax;
-        }
+    CGFloat pageWidth = contentView.pageWidth;
+
+    // Force scroll view to stop on a page boundary.
+    CGFloat pageNumber = targetContentOffset->x / pageWidth;
+    if (velocity.x < 0) {
+        pageNumber = floor(pageNumber);
+    } else {
+        pageNumber = ceil(pageNumber);
     }
+    pageNumber = MAX(0, MIN(pageNumber, contentView.subviews.count - 1));
+    targetContentOffset->x = pageNumber * pageWidth;
 }
 
 @end
